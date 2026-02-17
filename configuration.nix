@@ -123,6 +123,13 @@
     };
   };
 
+  fonts = {
+    fontDir.enable = true;
+    packages = with pkgs; [
+      nerd-fonts.symbols-only
+    ];
+  };
+
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];

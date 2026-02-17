@@ -20,7 +20,7 @@
   };
 
   home.packages = with pkgs; [
-    nil
+    nixd
     clang-tools
   ];
 
