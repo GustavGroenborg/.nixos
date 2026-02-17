@@ -98,7 +98,9 @@
   environment.systemPackages = with pkgs; [
     bitwarden-desktop
     curl
+    direnv
     git
+    nix-direnv
     tree
     ripgrep
     wget
