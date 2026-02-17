@@ -5,8 +5,11 @@
 
   programs.git = {
     enable    = true;
-    userName  = "Gustav C. R. Grønborg";
-    userEmail = "gustavrisagerus@gmail.com";
+    settings.user = {
+      name  = "Gustav C. R. Grønborg";
+      email = "gustavrisagerus@gmail.com";
+    };
+
   };
 
   programs.zsh = {
