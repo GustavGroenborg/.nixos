@@ -9,21 +9,34 @@
     };
   };
 
-  outputs = { nixpkgs, home-manager, ... }@inputs: {
-    nixosConfigurations = {
-      nixos = nixpkgs.lib.nixosSystem {
-        modules = [
-          ./configuration.nix
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs   = true;
-            home-manager.useUserPackages = true;
-
-            home-manager.users.gcrg = import ./home.nix;
-          }
-        ];
+  outputs = { nixpkgs, home-manager, ... }@inputs:
+    let
+      system = "x86_64-linux";
+      pkgs = import inputs.nixpkgs { inherit system; };
+    in
+      {
+        nixosConfigurations = {
+          nixos = nixpkgs.lib.nixosSystem {
+            modules = [
+              ./configuration.nix
+              home-manager.nixosModules.home-manager
+              {
+                home-manager.useGlobalPkgs   = true;
+                home-manager.useUserPackages = true;
+                
+                home-manager.users.gcrg = import ./home.nix;
+              }
+            ];
+          };
+        };
+        devShells.${system} = {
+          haskell = pkgs.mkShellNoCC {
+            packages = with pkgs; [
+              ghc
+              cabal-install
+              haskell-language-server
+            ];
+          };
+        };
       };
-    };
-
-  };
 }
