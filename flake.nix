@@ -30,13 +30,7 @@
           };
         };
         devShells.${system} = {
-          haskell = pkgs.mkShellNoCC {
-            packages = with pkgs; [
-              ghc
-              cabal-install
-              haskell-language-server
-            ];
-          };
+          haskell = import ./shells/haskell.nix { inherit pkgs; };
         };
       };
 }
