@@ -76,7 +76,9 @@
   };
 
   # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
+  # TODO: automated configuration file, write `services.xserver.libinput.enable, but this option has been renamed. Consider making an issue for this.
+  services.libinput.enable   = true;
+  services.libinput.touchpad.sendEventsMode = "disabled";
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.gcrg = {
@@ -95,6 +97,7 @@
   # $ nix search wget
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.trusted-users = [ "root" "gcrg" ];
   environment.systemPackages = with pkgs; [
     bitwarden-desktop
     curl
@@ -102,6 +105,8 @@
     git
     nix-direnv
     tree
+    podman
+    podman-compose
     ripgrep
     wget
   ];

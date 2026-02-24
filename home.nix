@@ -23,8 +23,9 @@
   };
 
   home.packages = with pkgs; [
-    nixd
     clang-tools
+    devenv # TODO: delete after semester end
+    nixd
   ];
 
   home.stateVersion = "25.11";
