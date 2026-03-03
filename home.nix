@@ -22,6 +22,8 @@
     package = pkgs.emacs-gtk;
   };
 
+  services.emacs.enable = true;
+
   home.packages = with pkgs; [
     clang-tools
     devenv # TODO: delete after semester end
