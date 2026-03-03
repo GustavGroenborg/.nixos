@@ -103,6 +103,7 @@
     curl
     direnv
     git
+    htop
     nix-direnv
     tree
     podman
