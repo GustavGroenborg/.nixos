@@ -30,6 +30,7 @@
           };
         };
         devShells.${system} = {
+          cpp     = import ./shells/cpp.nix { inherit pkgs; };
           haskell = import ./shells/haskell.nix { inherit pkgs; };
           java25  = import ./shells/java.nix {
             inherit pkgs;
