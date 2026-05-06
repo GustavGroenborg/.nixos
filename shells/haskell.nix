@@ -1,6 +1,6 @@
 { pkgs }:
 
-pkgs.mkShellNoCC {
+pkgs.mkShell {
   packages = with pkgs; [
     ghc
     cabal-install
