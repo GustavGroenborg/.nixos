@@ -23,6 +23,12 @@
       email = "gustavrisagerus@gmail.com";
     };
 
+    ignores = [
+      "*~"
+      "*.swp"
+      ".direnv/"
+    ];
+
   };
 
 #  programs.zsh = {
