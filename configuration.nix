@@ -104,6 +104,7 @@
     direnv
     git
     htop
+    just
     nix-direnv
     tree
     podman
