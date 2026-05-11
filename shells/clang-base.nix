@@ -18,10 +18,14 @@ pkgs.mkShell.override { stdenv = pkgs.clangStdenv; } {
     export CC=clang
     export CXX=clang++
 
+    # C include path supplied by Google Gemini
+    export C_INCLUDE_PATH="$(clang -E -x c - -v < /dev/null 2>&1 | grep '^ /nix/store' | sed 's/^ //' | paste -sd ':' -)"
+
     # CPP modules fix copied supplied by Google Gemini
     export CPLUS_INCLUDE_PATH="$(clang++ -E -x c++ - -v < /dev/null 2>&1 | grep '^ /nix/store' | sed 's/^ //' | paste -sd ':' -)"
 
     echo "Fixed include paths for module scanning:"
+    echo "  - $C_INCLUDE_PATH"
     echo "  - $CPLUS_INCLUDE_PATH"
   '';
 }
