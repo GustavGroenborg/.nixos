@@ -3,6 +3,7 @@ pkgs.mkShell.override { stdenv = pkgs.clangStdenv; } {
   nativeBuildInputs = with pkgs; [
     cmake
     cmake-language-server
+    clang
     clang-tools
     lldb
     ninja
@@ -21,6 +22,6 @@ pkgs.mkShell.override { stdenv = pkgs.clangStdenv; } {
     export CPLUS_INCLUDE_PATH="$(clang++ -E -x c++ - -v < /dev/null 2>&1 | grep '^ /nix/store' | sed 's/^ //' | paste -sd ':' -)"
 
     echo "Fixed include paths for module scanning:"
-    echo "  - $CPLUS_INCLUDE_PATH
+    echo "  - $CPLUS_INCLUDE_PATH"
   '';
 }

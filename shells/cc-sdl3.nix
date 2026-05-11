@@ -24,6 +24,6 @@ pkgs.mkShell {
   ];
 
   shellHook = ''
-    echo "Loaded SDL3 environment (X11 + Wayland)
+    echo "Loaded SDL3 environment (X11 + Wayland)"
   '';
 }
