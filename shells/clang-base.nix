@@ -1,12 +1,10 @@
 { pkgs, ... }:
-pkgs.mkShell {
+pkgs.mkShell.override { stdenv = pkgs.clangStdenv; } {
   nativeBuildInputs = with pkgs; [
     cmake
-    clang
+    cmake-language-server
     clang-tools
-    gcc
-    gdb
-    git
+    lldb
     ninja
     pkg-config
     vcpkg
