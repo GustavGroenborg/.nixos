@@ -11,6 +11,8 @@
     };
   };
 
+  services.ssh-agent.enable = true;
+
   programs.direnv = {
     enable = true;
     nix-direnv.enable = true;
@@ -31,17 +33,32 @@
 
   };
 
-#  programs.zsh = {
-#    enable = true;
-#    enableCompletion = true;
-#  };
+  #  programs.zsh = {
+  #    enable = true;
+  #    enableCompletion = true;
+  #  };
 
   programs.emacs = {
     enable  = true;
-    package = pkgs.emacs-gtk;
+    package = pkgs.emacs;
   };
 
-  services.emacs.enable = true;
+  programs.ssh = {
+    enable = true;
+    enableDefaultConfig = false;
+    matchBlocks."*" = {
+      addKeysToAgent = "yes";
+      forwardAgent = false;
+      compression = false;
+      controlMaster = "no";
+      controlPath = "~/.ssh/master-%r@%n:%p";
+      controlPersist = "no";
+      hashKnownHosts = false;
+      serverAliveCountMax = 3;
+      serverAliveInterval = 0;
+      userKnownHostsFile = "~/.ssh/known_hosts";
+    };
+  };
 
   home.packages = with pkgs; [
     clang-tools
