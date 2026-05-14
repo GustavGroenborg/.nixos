@@ -11,7 +11,13 @@
     };
   };
 
+  services.emacs.enable = true;
   services.ssh-agent.enable = true;
+
+  systemd.user.services.emacs = {
+    Unit.After = [ "graphical-session.target" ];
+    Install.WantedBy = pkgs.lib.mkForce [ "graphical-session.target" ];
+  };
 
   programs.direnv = {
     enable = true;
@@ -29,6 +35,7 @@
       "*~"
       "*.swp"
       ".direnv/"
+      ".envrc.local"
     ];
 
   };
@@ -61,7 +68,7 @@
   };
 
   home.packages = with pkgs; [
-    clang-tools
+    #clang-tools # Uncomment his is anything unexpectedly breaks
     devenv # TODO: delete after semester end
     libreoffice
     nixd
