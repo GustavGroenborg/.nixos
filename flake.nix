@@ -29,15 +29,9 @@
             ];
           };
         };
-        
-        devShells.${system} = let
-          clangBase = import ./shells/clang-base.nix { inherit pkgs; };
-        in {
-          cpp     = clangBase;
-          cc-sdl3 = import ./shells/cc-sdl3.nix {
-            inherit pkgs;
-            baseShell = clangBase;
-          };
+
+        devShells.${system} = {
+          cc-tools = import ./shells/cc-tools.nix { inherit pkgs; };
           haskell = import ./shells/haskell.nix { inherit pkgs; };
           java25  = import ./shells/java.nix {
             inherit pkgs;
