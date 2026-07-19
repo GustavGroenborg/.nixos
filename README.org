@@ -1,0 +1,33 @@
+#+Title: NixOS Configuration
+The following directory holds my personal nixos configuration. I have tried to
+achieve a customisable setup, that builds upon NixOS modules. All modules are
+placed in the path ~./common/~, while host specific configurations are placed in ~./hosts/~.
+
+* How to do common tasks
+** Rebuild and switch
+The following command, assumes that the NixOS setup, this git repository,
+resides in the absolute path ~~/.nixos~
+#+begin_src bash
+sudo nixos-rebuild switch --flake ~/.nixos#<CONFIGURATION-NAME>
+#+end_src
+
+** Deleting older system generations
+To get an overview of how many system generations there currently is, run the
+following command:
+#+begin_src
+  sudo nix-env --list-generations -p /nix/var/nix/profiles/system
+#+end_src
+
+You have three possible ways of marking older 
+1. Deleting all but the current generation:
+   ~sudo nix-env --delete-generations old -p /nix/var/nix/profiles/system~
+2. Deleting generations older than XY days, e.g. 30 days:
+   ~sudo nix-env --delete-generations 30d -p /nix/var/nix/profiles/system~
+3. Deleting everything but the X oldest generations, e.g. 7 generations:
+   ~suso nix-env --delete-generations +7 -p /nix/var/nix/profiles/system~
+
+After having marked the appropriate generations for deletions run the following
+command, to run the garbage collector:
+#+begin_src shell
+  sudo nix-stor gc
+#+end_src

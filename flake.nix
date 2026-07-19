@@ -16,22 +16,21 @@
     in
       {
         nixosConfigurations = {
-          nixos = nixpkgs.lib.nixosSystem {
-            modules = [
-              ./configuration.nix
-              home-manager.nixosModules.home-manager
-              {
-                home-manager.useGlobalPkgs   = true;
-                home-manager.useUserPackages = true;
-                
-                home-manager.users.gcrg = import ./home.nix;
-              }
-            ];
-          };
           t480 = nixpkgs.lib.nixosSystem {
             inherit system;
             modules = [
               ./hosts/t480/configuration.nix
+              home-manager.nixosModules.home-manager
+              {
+                home-manager.useGlobalPkgs   = true;
+                home-manager.useUserPackages = true;
+              }
+            ];
+          };
+          desktop = nixpkgs.lib.nixosSystem {
+            inherit system;
+            modules = [
+              ./hosts/desktop/configuration.nix
               home-manager.nixosModules.home-manager
               {
                 home-manager.useGlobalPkgs   = true;
