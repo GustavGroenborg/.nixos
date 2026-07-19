@@ -27,8 +27,8 @@
   programs.git = {
     enable    = true;
     settings.user = {
-      name  = "Gustav C. R. Grønborg";
-      email = "gustavrisagerus@gmail.com";
+      name  = "Gustav Hjort Bonnerup";
+      email = "gustav@hjortbonnerup.dk";
     };
 
     ignores = [
@@ -40,11 +40,6 @@
 
   };
 
-  #  programs.zsh = {
-  #    enable = true;
-  #    enableCompletion = true;
-  #  };
-
   programs.emacs = {
     enable  = true;
     package = pkgs.emacs;
@@ -52,23 +47,24 @@
 
   programs.ssh = {
     enable = true;
-    enableDefaultConfig = false;
-    matchBlocks."*" = {
-      addKeysToAgent = "yes";
-      forwardAgent = false;
-      compression = false;
-      controlMaster = "no";
-      controlPath = "~/.ssh/master-%r@%n:%p";
-      controlPersist = "no";
-      hashKnownHosts = false;
-      serverAliveCountMax = 3;
-      serverAliveInterval = 0;
-      userKnownHostsFile = "~/.ssh/known_hosts";
+    settings = {
+      "Host *" = {
+        "AddKeysToAgent"       = "yes";
+        "ForwardAgent"         = "no";
+        "Compression"          = "no";
+        "ControlMaster"        = "no";
+        "ControlPath"          = "~/.ssh/master-%r@%n:%p";
+        "ControlPersist"       = "no";
+        "HashKnownHosts"       = "no";
+        "ServerAliveCountMax"  = "3";
+        "ServerAliveInterval"  = "0";
+        "UserKnownHostsFile"   = "~/.ssh/known_hosts";
+      };
     };
   };
 
   home.packages = with pkgs; [
-    #clang-tools # Uncomment his is anything unexpectedly breaks
+    bc
     devenv # TODO: delete after semester end
     libreoffice
     nixd
