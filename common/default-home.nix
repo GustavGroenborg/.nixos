@@ -1,4 +1,4 @@
-{ config, lib, osConfig, pkgs, ...}:
+{ config, lib, osConfig, pkgs, pkgs-unstable, ...}:
 
 with lib;
 
@@ -25,6 +25,8 @@ with lib;
     ripgrep
     texliveFull
     tree
+
+    pkgs-unstable.antigravity-cli
   ];
 
   programs.direnv = {

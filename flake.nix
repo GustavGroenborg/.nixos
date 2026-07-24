@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager = {
       url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -13,6 +14,10 @@
     let
       system = "x86_64-linux";
       pkgs = import inputs.nixpkgs { inherit system; };
+      pkgs-unstable = import inputs.nixpkgs-unstable {
+        inherit system;
+        config.allowUnfree = true;
+      };
     in
       {
         nixosConfigurations = {
@@ -24,6 +29,7 @@
               {
                 home-manager.useGlobalPkgs   = true;
                 home-manager.useUserPackages = true;
+                home-manager.extraSpecialArgs = { inherit pkgs-unstable; };
               }
             ];
           };
@@ -35,6 +41,7 @@
               {
                 home-manager.useGlobalPkgs   = true;
                 home-manager.useUserPackages = true;
+                home-manager.extraSpecialArgs = { inherit pkgs-unstable; };
               }
             ];
           };
