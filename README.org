@@ -31,3 +31,16 @@ command, to run the garbage collector:
 #+begin_src shell
   sudo nix-stor gc
 #+end_src
+
+* How to do uncommon tasks
+
+** Detecting the drivers that works with ~lm_sensors~
+... and "CoolerControl". In my experience, judging from only a single case, the
+proper drivers to detect my motherboard fans, where not loaded. These drivers
+can be detected by using the following command:
+#+begin_src shell
+  sudo nix-shell -p lm_sensors --run sensors-detect
+#+end_src
+/Note/: If you already have ~lm_sensors~ installed, drop the ~nix-shell~
+command, and run ~sensors-detect~ directly. After ~sensors-detect~ have run,
+add the detected drivers to your kernelmodules.

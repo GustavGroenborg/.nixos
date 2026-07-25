@@ -15,9 +15,18 @@ in
   custom.identity = {
     inherit username hostname stateVersion;
   };
+
+  boot.kernelModules = [
+    "nct6683" # Driver for motherboard fans
+  ];
   
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+
+  hardware.graphics.enable = true;
+  hardware.graphics.enable32Bit = true;
+
+  programs.coolercontrol.enable = true;
   
   home-manager.users."${username}" = {
     imports = [

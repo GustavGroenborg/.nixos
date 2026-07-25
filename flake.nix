@@ -4,13 +4,18 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixos-hardware = {
+      url = "github:NixOS/nixos-hardware";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     home-manager = {
       url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
   
-  outputs = { nixpkgs, home-manager, ... }@inputs:
+  outputs = { nixpkgs, nixos-hardware, home-manager, ... }@inputs:
     let
       system = "x86_64-linux";
       pkgs = import inputs.nixpkgs { inherit system; };
@@ -43,7 +48,13 @@
                 home-manager.useUserPackages = true;
                 home-manager.extraSpecialArgs = { inherit pkgs-unstable; };
               }
-            ];
+            ]
+            ++ (with nixos-hardware.nixosModules; [
+              common-cpu-amd
+              common-cpu-amd-pstate
+              common-gpu-amd
+              common-pc-ssd
+            ]);
           };
         };
 
