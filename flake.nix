@@ -59,9 +59,10 @@
         };
 
         devShells.${system} = {
-          cc-tools = import ./shells/cc-tools.nix { inherit pkgs; };
-          haskell = import ./shells/haskell.nix { inherit pkgs; };
-          java25  = import ./shells/java.nix {
+          cc-tools   = import ./shells/cc-tools.nix { inherit pkgs; };
+          java-tools = import ./shells/java-tools.nix { inherit pkgs; };
+          haskell    = import ./shells/haskell.nix { inherit pkgs; };
+          java25     = import ./shells/java.nix {
             inherit pkgs;
             jdk = pkgs.jdk25_headless;
           };
