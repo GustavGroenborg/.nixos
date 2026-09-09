@@ -23,6 +23,9 @@ in
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  hardware.bluetooth.enable = true;
+  hardware.bluetooth.powerOnBoot = true;
+
   hardware.graphics.enable = true;
   hardware.graphics.enable32Bit = true;
 
@@ -34,6 +37,7 @@ in
       {
         home.packages = with pkgs; [
           steam
+          kdePackages.kdeconnect-kde
         ];
       }
     ];
