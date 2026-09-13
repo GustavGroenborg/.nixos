@@ -19,6 +19,16 @@ in
   boot.kernelModules = [
     "nct6683" # Driver for motherboard fans
   ];
+
+  boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
+
+  boot.kernelParams = [
+    "split_lock_mitigate=0"
+  ];
+
+  boot.kernel.sysctl = {
+    "vm.max_map_count" = 2147483642;
+  };
   
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -30,6 +40,12 @@ in
   hardware.graphics.enable32Bit = true;
 
   programs.coolercontrol.enable = true;
+  programs.gamemode.enable = true;
+
+  services.scx = {
+    enable    = true;
+    scheduler = "scx_lavd";
+  };
   
   home-manager.users."${username}" = {
     imports = [
