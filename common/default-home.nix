@@ -20,6 +20,7 @@ with lib;
     htop
     just
     kdePackages.okular
+    kdePackages.kdeconnect-kde
     libreoffice
     nixd
     ripgrep

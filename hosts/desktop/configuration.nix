@@ -53,7 +53,6 @@ in
       {
         home.packages = with pkgs; [
           steam
-          kdePackages.kdeconnect-kde
         ];
       }
     ];
