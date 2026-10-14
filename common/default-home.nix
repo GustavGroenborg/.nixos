@@ -53,7 +53,9 @@ with lib;
       name  = "Gustav Hjort Bonnerup";
       email = "gustav@hjortbonnerup.dk";
     };
-
+    settings.pull = {
+      rebase = false;
+    };
     ignores = [
       "*~"
       "*.swp"
