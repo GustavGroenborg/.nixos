@@ -29,9 +29,15 @@ with lib;
     pkgs-unstable.antigravity-cli
   ];
 
+  programs.bash = {
+    enable = true;
+    enableCompletion = true;
+  };
+
   programs.direnv = {
     enable            = true;
     nix-direnv.enable = true;
+    enableBashIntegration = true;
   };
 
   programs.emacs = {
