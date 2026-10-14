@@ -54,9 +54,13 @@ in
         home.packages = with pkgs; [
           steam
           kdePackages.kdeconnect-kde
+          (aspellWithDicts (dicts: with dicts; [
+            en
+            en-computers
+            en-science
+          ]))
         ];
       }
     ];
   };
-
 }
