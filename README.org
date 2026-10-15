@@ -29,7 +29,7 @@ You have three possible ways of marking older
 After having marked the appropriate generations for deletions run the following
 command, to run the garbage collector:
 #+begin_src shell
-  sudo nix-stor gc
+  sudo nix-store --gc
 #+end_src
 
 * How to do uncommon tasks
