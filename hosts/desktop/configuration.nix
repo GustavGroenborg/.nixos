@@ -39,6 +39,11 @@ in
   hardware.graphics.enable = true;
   hardware.graphics.enable32Bit = true;
 
+  networking.firewall = rec {
+    allowedTCPPortRanges = [ { from = 1714; to = 1764;} ];
+    allowedUDPPortRanges = allowedTCPPortRanges;
+  };
+
   programs.coolercontrol.enable = true;
   programs.gamemode.enable = true;
 
